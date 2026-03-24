@@ -381,70 +381,67 @@
         </div>
         
         <div class="sin-guide-grid">
+          <!-- LEVEL 1 -->
           <div class="sin-guide-card">
-            <h3>🔥 Sin Level 1</h3>
+            <h3>Sin Level 1</h3>
             <span class="tier-title">Lingerie Veil</span>
             <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Lingerie Veil - Tease</p>
+              <p><strong>Edition:</strong> Lingerie Veil – Tease</p>
+              <p><strong>Collection:</strong> Soft Tease Collection</p>
               <p><strong>Theme:</strong> Soft tease / lingerie</p>
-              <p><strong>Intensity:</strong> 🔥</p>
+              <p><strong>Focus:</strong> Gentle seduction</p>
+              <p><strong>Intensity:</strong> 🔥<span style="opacity:0.15; filter:grayscale(1);">🔥🔥🔥🔥</span></p>
             </div>
           </div>
 
+          <!-- LEVEL 2 -->
           <div class="sin-guide-card">
-            <h3>🔥🔥 Sin Level 2</h3>
+            <h3>Sin Level 2</h3>
             <span class="tier-title">Whispered Desires</span>
             <div class="sin-guide-info">
               <p><strong>Edition:</strong> Whispered Desires – Solo Edition</p>
+              <p><strong>Collection:</strong> Whispered Desires Collection</p>
               <p><strong>Theme:</strong> Nude soft / erotic poses</p>
-              <p><strong>Intensity:</strong> 🔥🔥</p>
+              <p><strong>Focus:</strong> Intimate whispers</p>
+              <p><strong>Intensity:</strong> 🔥🔥<span style="opacity:0.15; filter:grayscale(1);">🔥🔥🔥</span></p>
             </div>
           </div>
 
+          <!-- LEVEL 3 -->
           <div class="sin-guide-card">
-            <h3>🔥🔥🔥 Sin Level 3</h3>
+            <h3>Sin Level 3</h3>
             <span class="tier-title">Carnal Series</span>
             <div class="sin-guide-info">
-              <div>
-                <p><strong>Collection:</strong> Carnal Embrace</p>
-                <p><strong>Focus:</strong> Passionate Collection</p>
-              </div>
-              <div>
-                <p><strong>Theme:</strong> Devoted Worship</p>
-                <p><strong>Experience:</strong> Oral Temptation</p>
-              </div>
-              <p><strong>Intensity:</strong> 🔥🔥🔥</p>
+              <p><strong>Edition:</strong> Carnal Embrace Edition</p>
+              <p><strong>Collection:</strong> Carnal Embrace</p>
+              <p><strong>Theme:</strong> Devoted Worship</p>
+              <p><strong>Focus:</strong> Passionate oral temptation</p>
+              <p><strong>Intensity:</strong> 🔥🔥🔥<span style="opacity:0.15; filter:grayscale(1);">🔥🔥</span></p>
             </div>
           </div>
 
+          <!-- LEVEL 4 -->
           <div class="sin-guide-card">
-            <h3>🔥🔥🔥🔥 Sin Level 4</h3>
+            <h3>Sin Level 4</h3>
             <span class="tier-title">Forbidden Series</span>
             <div class="sin-guide-info">
-              <div>
-                <p><strong>Collection:</strong> Forbidden Depths</p>
-                <p><strong>Focus:</strong> Dark Indulgence</p>
-              </div>
-              <div>
-                <p><strong>Action:</strong> Explosive Surrender</p>
-                <p><strong>Finish:</strong> Climax Finish</p>
-              </div>
-              <p><strong>Intensity:</strong> 🔥🔥🔥🔥</p>
+              <p><strong>Edition:</strong> Forbidden Depths Edition</p>
+              <p><strong>Collection:</strong> Forbidden Depths</p>
+              <p><strong>Theme:</strong> Dark indulgence</p>
+              <p><strong>Focus:</strong> Explosive surrender & climax</p>
+              <p><strong>Intensity:</strong> 🔥🔥🔥🔥<span style="opacity:0.15; filter:grayscale(1);">🔥</span></p>
             </div>
           </div>
 
+          <!-- LEVEL 5 -->
           <div class="sin-guide-card">
-            <h3>🔥🔥🔥🔥🔥 Sin Level 5</h3>
+            <h3>Sin Level 5</h3>
             <span class="tier-title">Ultimate Sin</span>
             <div class="sin-guide-info">
-              <div>
-                <p><strong>Collection:</strong> Abyss of Sin</p>
-                <p><strong>Focus:</strong> Ultimate Collection</p>
-              </div>
-              <div>
-                <p><strong>Feature:</strong> Twisted Fantasies</p>
-                <p><strong>Vault:</strong> Fetish Vault</p>
-              </div>
+              <p><strong>Edition:</strong> Abyss of Sin Edition</p>
+              <p><strong>Collection:</strong> Abyss of Sin</p>
+              <p><strong>Theme:</strong> Twisted fantasies</p>
+              <p><strong>Focus:</strong> Fetish vault & ultimate indulgence</p>
               <p><strong>Intensity:</strong> 🔥🔥🔥🔥🔥</p>
             </div>
           </div>
@@ -613,7 +610,7 @@ function showChar(id) {
     let firesHTML = '';
     for (let i = 1; i <= 5; i++) {
         if (i <= p.lv) firesHTML += '🔥';
-        else firesHTML += '<span style="opacity: 0.3; filter: grayscale(1);">🔥</span>';
+        else firesHTML += '<span style="opacity: 0.15; filter: grayscale(1);">🔥</span>';
     }
     const template = (PACK_TEMPLATES[5] || PACK_TEMPLATES[4])[p.lv - 1] || { cls: 'sin-1' };
     

@@ -1435,7 +1435,7 @@
     }
 
     .card-wrap:hover .pack-preview .preview-img:nth-child(1) { transform: translateX(-40%) translateY(-25%) rotate(-6deg) scale(0.6); }
-    .card-wrap:hover .pack-preview .preview-img:nth-child(2) { transform: translateX(-50%) translateY(-27%) rotate(0deg) scale(0.6); }
+    .card-wrap:hover .pack-preview .preview-img:nth-child(2) { transform: translateX(-50%) translateY(-28%) rotate(0deg) scale(0.6); }
     .card-wrap:hover .pack-preview .preview-img:nth-child(3) { transform: translateX(-60%) translateY(-25%) rotate(6deg) scale(0.6); }
     /* Global overlay preview to escape stacking contexts */
     .global-pack-preview {
@@ -1891,7 +1891,7 @@
         im.style.position = 'fixed';
         im.style.pointerEvents = 'none';
         im.style.opacity = '0';
-        im.style.transition = 'transform 1.2s cubic-bezier(.22,.8,.3,1)';
+        im.style.transition = 'transform 1.2s cubic-bezier(.22,.8,.3,1), opacity 0.22s ease';
         im.style.willChange = 'transform, opacity';
         im.style.zIndex = '2147483647';
         im.style.borderRadius = '12px';
@@ -1901,6 +1901,8 @@
       }
 
       let currentCard = null;
+      let showTimeoutId = null;
+      let showTimeoutCard = null;
 
       function extractPreviewSrcs(cardEl) {
         const packImgs = cardEl.querySelectorAll('.pack-preview .preview-img');
@@ -1922,12 +1924,14 @@
       }
 
       function showFor(cardEl) {
+        if (showTimeoutId) { clearTimeout(showTimeoutId); showTimeoutId = null; showTimeoutCard = null; }
         currentCard = cardEl;
         const rect = cardEl.getBoundingClientRect();
         const srcs = extractPreviewSrcs(cardEl);
         const centerX = rect.left + rect.width / 2;
         const baseTop = rect.top - rect.height * 0.25; // 25% above
-        const spread = Math.max(120, rect.width * 0.28);
+        // horizontal spread between previews; increase by 10% for more separation
+        const spread = Math.max(120, rect.width * 0.28) * 1.10;
         let baseW = Math.min(200, Math.round(rect.width * 0.55));
         // make images slightly smaller than card-derived width
         let imgW = Math.round(baseW * 0.9 * 1.10); // 10% larger
@@ -1950,18 +1954,29 @@
 
         // animate all three at the same time: move to spread positions and rise
         // use a larger timeout so the initial stacked state is visible before transition
-        setTimeout(() => {
+        const extraMiddle = Math.round(rect.height * 0.02); // 5% extra lift for middle preview
+        showTimeoutCard = cardEl;
+        showTimeoutId = setTimeout(() => {
+          // if currentCard changed (user left or another card entered), abort
+          if (currentCard !== cardEl) { showTimeoutId = null; showTimeoutCard = null; return; }
+          // ensure the pointer is still over the card (avoid race conditions)
+          try { if (!cardEl.matches(':hover')) { showTimeoutId = null; showTimeoutCard = null; return; } } catch(e){}
           imgs.forEach((im, i) => {
             const leftPos = (centerX + (i-1) * spread - imgW / 2);
             im.style.left = leftPos + 'px';
             im.style.top = (baseTop) + 'px';
             im.style.opacity = '1';
-            im.style.transform = 'translateY(' + targetY + 'px) scale(' + scaleTarget + ') rotate(' + ((i-1) * 4) + 'deg)';
+            const tY = (i === 1) ? (targetY - extraMiddle) : targetY;
+            im.style.transform = 'translateY(' + tY + 'px) scale(' + scaleTarget + ') rotate(' + ((i-1) * 4) + 'deg)';
           });
-        }, 160);
+          showTimeoutId = null;
+          showTimeoutCard = null;
+        }, 40);
       }
 
       function hideAll() {
+        // hide any pending scheduled show regardless of card
+        if (showTimeoutId) { clearTimeout(showTimeoutId); showTimeoutId = null; showTimeoutCard = null; }
         if (!currentCard) return;
         const rect = currentCard.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -1981,8 +1996,34 @@
         requestAnimationFrame(() => {
           imgs.forEach((im) => {
             im.getBoundingClientRect();
-            im.style.transition = 'transform 1.2s cubic-bezier(.22,.8,.3,1)';
+            im.style.transition = 'transform 1.2s cubic-bezier(.22,.8,.3,1), opacity 0.22s ease';
           });
+          currentCard = null;
+        });
+      }
+
+      function hideFor(cardEl) {
+        // only act if the scheduled show belongs to this card or the shown card is this card
+        if (showTimeoutId && showTimeoutCard === cardEl) {
+          clearTimeout(showTimeoutId);
+          showTimeoutId = null;
+          showTimeoutCard = null;
+        }
+        if (currentCard !== cardEl) return;
+        // reuse hideAll logic but scoped: hide the currentCard
+        const rect = currentCard.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        imgs.forEach((im) => {
+          im.style.transition = 'none';
+          im.style.opacity = '0';
+          const w = parseInt(im.style.width) || 0;
+          im.style.left = (centerX - w / 2) + 'px';
+          im.style.top = (centerY - w / 2) + 'px';
+          im.style.transform = 'translateY(0px) scale(0.5) rotate(0deg)';
+        });
+        requestAnimationFrame(() => {
+          imgs.forEach((im) => { im.getBoundingClientRect(); im.style.transition = 'transform 1.2s cubic-bezier(.22,.8,.3,1), opacity 0.22s ease'; });
           currentCard = null;
         });
       }
@@ -2003,7 +2044,7 @@
           });
           card.addEventListener('pointerleave', (ev) => {
             // only hide if leaving the card entirely
-            if (card.querySelector('.pack-preview')) hideAll();
+            if (card.querySelector('.pack-preview')) hideFor(card);
           });
           // add click fallback so user can tap/click to reveal previews for testing
           card.addEventListener('click', (ev) => {

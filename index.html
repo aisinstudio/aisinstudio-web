@@ -88,21 +88,16 @@
     .page-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);border-color:rgba(255,255,255,0.2);}
     .page-btn.active{background:linear-gradient(135deg,var(--purple),var(--pink));border-color:transparent;color:white;box-shadow:0 0 22px rgba(122,0,255,0.4);}
 
-    /* EDITIONS */
+    /* SIN GUIDE */
     #editions{padding:48px 0 36px;border-top:1px solid rgba(255,255,255,0.06);}
-    .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .pack-card{padding:28px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025));border:1px solid rgba(255,255,255,0.09);box-shadow:0 14px 36px rgba(0,0,0,0.22);transition:transform 0.3s ease,border-color 0.3s ease;}
-    .pack-card:hover{transform:translateY(-5px);border-color:rgba(122,0,255,0.45);box-shadow:0 18px 42px rgba(0,0,0,0.35),0 0 24px rgba(122,0,255,0.16);}
-    .pack-badge{width:fit-content;padding:7px 14px;border-radius:999px;font-family:'Syncopate',sans-serif;font-size:0.52rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:rgba(255,255,255,0.06);color:#f8f4ff;margin-bottom:18px;border:1px solid rgba(255,255,255,0.08);}
-    .pack-card.featured{background:radial-gradient(circle at top right,rgba(122,0,255,0.18),transparent 30%),linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));border-color:rgba(255,46,136,0.24);}
-    .pack-card h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;margin-bottom:10px;}
-    .pack-card>p{color:var(--muted);line-height:1.65;margin-bottom:20px;font-size:0.92rem;}
-    .price{display:flex;align-items:baseline;gap:8px;margin:8px 0 18px;}
-    .price strong{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;}
-    .price span{color:var(--muted);font-size:0.88rem;}
-    .features{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;color:#e7dff5;font-size:0.92rem;}
-    .features li{position:relative;padding-left:22px;line-height:1.45;}
-    .features li::before{content:"✦";position:absolute;left:0;color:#c984ff;font-size:0.6rem;top:4px;}
+    .sin-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+    .sin-guide-card{padding:26px;border-radius:24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:0.3s ease;}
+    .sin-guide-card:hover{border-color:rgba(122,0,255,0.3);transform:translateY(-4px);background:rgba(255,255,255,0.05);}
+    .sin-guide-card h3{font-family:'Syncopate',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+    .sin-guide-card .tier-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;display:block;color:#fff;}
+    .sin-guide-info{display:flex;flex-direction:column;gap:8px;font-size:0.9rem;color:var(--muted);line-height:1.5;}
+    .sin-guide-info strong{color:#fff;font-weight:600;}
+    .sin-guide-info div{padding-left:14px;border-left:1px solid rgba(122,0,255,0.25);}
 
     /* CTA */
     .cta-strip{padding:12px 0 46px;}
@@ -380,32 +375,80 @@
 
     <section id="editions">
       <div class="container">
-        <div class="section-head"><div><h2>Choose Your Edition</h2></div><p>Unlock individual packs or go premium with the Grand Bundle.</p></div>
-        <div class="packs">
-          <article class="pack-card">
-            <div class="pack-badge">Sin Level 🔥</div>
-            <h3>Tease Edition</h3>
-            <p>The elegant collector entry. Lingerie, soft fantasy, and premium posing.</p>
-            <div class="price"><strong>$8.99</strong><span>single character pack</span></div>
-            <ul class="features"><li>100 high-quality images</li><li>Lingerie &amp; elegant poses</li><li>Single character focus</li><li>SFW-safe thumbnails</li></ul>
-            <a href="#" class="btn btn-secondary">Unlock Pack</a>
-          </article>
-          <article class="pack-card featured">
-            <div class="pack-badge">Best Value ✦</div>
-            <h3>Grand Edition</h3>
-            <p>All sin levels combined into one definitive collector bundle with exclusive HD video drops.</p>
-            <div class="price"><strong>$24.99</strong><span>premium bundle</span></div>
-            <ul class="features"><li>All 4–5 editions combined</li><li>400–500 total images</li><li>4–7 exclusive HD videos</li><li>Priority early access</li></ul>
-            <a href="#" class="btn btn-primary">Get Grand Edition</a>
-          </article>
-          <article class="pack-card">
-            <div class="pack-badge">Vault Access</div>
-            <h3>Patreon Membership</h3>
-            <p>Monthly access to every character, all sin levels, and exclusive vault-only releases.</p>
-            <div class="price"><strong>Join</strong><span>recurring access</span></div>
-            <ul class="features"><li>All characters unlocked</li><li>All sin levels included</li><li>Monthly new drops</li><li>Collector ecosystem access</li></ul>
-            <a href="#" class="btn btn-secondary">Join Patreon</a>
-          </article>
+        <div class="section-head">
+          <div><h2>Sin Level Guide</h2></div>
+          <p>Explore our tiered collection levels designed to match every preference.</p>
+        </div>
+        
+        <div class="sin-guide-grid">
+          <div class="sin-guide-card">
+            <h3>🔥 Sin Level 1</h3>
+            <span class="tier-title">Lingerie Veil</span>
+            <div class="sin-guide-info">
+              <p><strong>Edition:</strong> Lingerie Veil - Tease</p>
+              <p><strong>Theme:</strong> Soft tease / lingerie</p>
+              <p><strong>Intensity:</strong> 🔥</p>
+            </div>
+          </div>
+
+          <div class="sin-guide-card">
+            <h3>🔥🔥 Sin Level 2</h3>
+            <span class="tier-title">Whispered Desires</span>
+            <div class="sin-guide-info">
+              <p><strong>Edition:</strong> Whispered Desires – Solo Edition</p>
+              <p><strong>Theme:</strong> Nude soft / erotic poses</p>
+              <p><strong>Intensity:</strong> 🔥🔥</p>
+            </div>
+          </div>
+
+          <div class="sin-guide-card">
+            <h3>🔥🔥🔥 Sin Level 3</h3>
+            <span class="tier-title">Carnal Series</span>
+            <div class="sin-guide-info">
+              <div>
+                <p><strong>Collection:</strong> Carnal Embrace</p>
+                <p><strong>Focus:</strong> Passionate Collection</p>
+              </div>
+              <div>
+                <p><strong>Theme:</strong> Devoted Worship</p>
+                <p><strong>Experience:</strong> Oral Temptation</p>
+              </div>
+              <p><strong>Intensity:</strong> 🔥🔥🔥</p>
+            </div>
+          </div>
+
+          <div class="sin-guide-card">
+            <h3>🔥🔥🔥🔥 Sin Level 4</h3>
+            <span class="tier-title">Forbidden Series</span>
+            <div class="sin-guide-info">
+              <div>
+                <p><strong>Collection:</strong> Forbidden Depths</p>
+                <p><strong>Focus:</strong> Dark Indulgence</p>
+              </div>
+              <div>
+                <p><strong>Action:</strong> Explosive Surrender</p>
+                <p><strong>Finish:</strong> Climax Finish</p>
+              </div>
+              <p><strong>Intensity:</strong> 🔥🔥🔥🔥</p>
+            </div>
+          </div>
+
+          <div class="sin-guide-card">
+            <h3>🔥🔥🔥🔥🔥 Sin Level 5</h3>
+            <span class="tier-title">Ultimate Sin</span>
+            <div class="sin-guide-info">
+              <div>
+                <p><strong>Collection:</strong> Abyss of Sin</p>
+                <p><strong>Focus:</strong> Ultimate Collection</p>
+              </div>
+              <div>
+                <p><strong>Feature:</strong> Twisted Fantasies</p>
+                <p><strong>Vault:</strong> Fetish Vault</p>
+              </div>
+              <p><strong>Intensity:</strong> 🔥🔥🔥🔥🔥</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

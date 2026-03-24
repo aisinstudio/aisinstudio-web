@@ -7,12 +7,16 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-echo 🚀 Subiendo a la web (Netlify)...
-netlify deploy --dir=. --prod
+echo 📦 Preparando cambios para GitHub...
+git add .
+git commit -m "Auto-update: %date% %time%"
+
+echo 🚀 Subiendo a GitHub...
+git push origin main
 
 if %ERRORLEVEL% EQU 0 (
-    echo ✅ ¡La web ha sido actualizada con éxito!
+    echo ✅ ¡La web ha sido actualizada en GitHub!
 ) else (
-    echo ❌ Hubo un error al subir a Netlify.
+    echo ❌ Hubo un error al subir a GitHub. Verifica tu conexión o cuenta.
 )
 pause

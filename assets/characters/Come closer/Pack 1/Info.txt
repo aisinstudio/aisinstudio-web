@@ -1,0 +1,4 @@
+NAME: Nombre del Pack
+LINK: https://patreon.com/tu-link
+PRICE: 8.99
+DESC: Una pequeña descripción (opcional)

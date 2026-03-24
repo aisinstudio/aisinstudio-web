@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aisin Studio — Premium Character Collections</title>
+  <meta name="description" content="Curated character drops, premium editions and exclusive themed collections with Aisin Studio's luxury dark aesthetic." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07070b;
+      --card: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --text: #f6f2ff;
+      --muted: #b9b1c9;
+      --purple: #7a00ff;
+      --pink: #ff2e88;
+      --glow: 0 0 30px rgba(122,0,255,0.28);
+      --max: 1380px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Cormorant Garamond',Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh;}
+    a{color:inherit;text-decoration:none;}
+    img{display:block;width:100%;height:auto;}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto;}
+
+    /* TOPBAR */
+    .topbar{position:sticky;top:0;z-index:200;backdrop-filter:blur(22px);background:rgba(7,7,11,0.88);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .logo{display:flex;flex-direction:column;line-height:1;cursor:pointer;}
+    .logo-top{font-family:'Syncopate',sans-serif;font-size:0.5rem;letter-spacing:0.38em;color:var(--muted);text-transform:uppercase;}
+    .logo-main{font-family:'Syncopate',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.2em;margin-top:5px;background:linear-gradient(135deg,#fff 40%,#d8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-links{display:flex;align-items:center;gap:26px;color:var(--muted);font-family:'Syncopate',sans-serif;font-size:0.58rem;letter-spacing:0.14em;}
+    .nav-links a{cursor:pointer;}
+    .nav-links a:hover{color:var(--text);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);font-family:'Syncopate',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;transition:0.22s ease;cursor:pointer;text-decoration:none;}
+    .btn-primary{color:white;background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:var(--glow);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(122,0,255,0.5);}
+    .btn-secondary{background:rgba(255,255,255,0.05);color:var(--text);}
+    .btn-secondary:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.2);}
+
+    /* PAGE SYSTEM */
+    .page{display:none;}
+    .page.active{display:block;}
+
+    /* VIDEO HERO */
+    .video-hero{position:relative;width:100%;height:58vh;min-height:360px;max-height:640px;overflow:hidden;background:var(--bg);}
+    .video-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .video-overlay{position:absolute;inset:0;background:linear-gradient(0deg,#07070b 0%,rgba(7,7,11,0.45) 38%,rgba(7,7,11,0.18) 65%,rgba(7,7,11,0.72) 100%),radial-gradient(ellipse at 28% 50%,rgba(122,0,255,0.22),transparent 50%),radial-gradient(ellipse at 75% 30%,rgba(255,46,136,0.14),transparent 40%);z-index:1;}
+    .video-hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:14px;}
+    .eyebrow{padding:7px 18px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e5d4ff;font-family:'Syncopate',sans-serif;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;}
+    .video-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:700;letter-spacing:-0.02em;line-height:0.92;max-width:14ch;}
+    .video-hero h1 em{font-style:italic;background:linear-gradient(135deg,#c984ff,#ff5fa9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .video-hero p{color:var(--muted);font-size:1.1rem;max-width:50ch;line-height:1.6;}
+    .hero-actions{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;justify-content:center;}
+
+    /* SEARCH */
+    .search-section{padding:30px 0 0;position:relative;z-index:10;}
+    .search-wrap{position:relative;max-width:760px;margin:0 auto;}
+    .search-wrap input{width:100%;height:56px;padding:0 58px 0 26px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:var(--text);font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:0.03em;outline:none;transition:0.25s;backdrop-filter:blur(12px);}
+    .search-wrap input::placeholder{color:rgba(185,177,201,0.5);}
+    .search-wrap input:focus{border-color:rgba(122,0,255,0.5);background:rgba(255,255,255,0.08);box-shadow:0 0 26px rgba(122,0,255,0.18);}
+    .search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
+
+    /* CHARACTER GRID */
+    #characters{padding:34px 0 0;}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:26px;}
+    .section-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:600;letter-spacing:-0.02em;}
+    .section-head p{color:var(--muted);max-width:44ch;line-height:1.6;font-size:0.95rem;}
+    .character-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+    .character-card{position:relative;overflow:hidden;border-radius:18px;background:var(--card);border:1px solid var(--card-border);aspect-ratio:2/3;transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;box-shadow:0 8px 24px rgba(0,0,0,0.3);cursor:pointer;}
+    .character-card:hover{transform:translateY(-5px);border-color:rgba(122,0,255,0.5);box-shadow:0 14px 36px rgba(0,0,0,0.5),0 0 26px rgba(122,0,255,0.22);}
+    .character-card .image-wrap{position:absolute;inset:0;overflow:hidden;}
+    .character-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease;}
+    .character-card:hover img{transform:scale(1.08);}
+    .character-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(0,0,0,0.88) 100%);pointer-events:none;}
+    .card-content{position:absolute;inset:auto 0 0 0;z-index:2;padding:13px 15px;display:flex;flex-direction:column;gap:5px;}
+    .tag{width:fit-content;padding:4px 10px;border-radius:999px;font-family:'Syncopate',sans-serif;font-size:0.48rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f0e4ff;background:rgba(122,0,255,0.28);border:1px solid rgba(255,255,255,0.1);}
+    .card-content h3{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:600;}
+    .view-link{font-family:'Syncopate',sans-serif;font-size:0.48rem;letter-spacing:0.12em;color:#d8aaff;margin-top:3px;}
+
+    /* PAGINATION */
+    .pagination-wrap{display:flex;align-items:center;justify-content:center;gap:10px;padding:34px 0 22px;}
+    .page-btn{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--muted);font-family:'Syncopate',sans-serif;font-size:0.68rem;font-weight:700;cursor:pointer;transition:0.2s;}
+    .page-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);border-color:rgba(255,255,255,0.2);}
+    .page-btn.active{background:linear-gradient(135deg,var(--purple),var(--pink));border-color:transparent;color:white;box-shadow:0 0 22px rgba(122,0,255,0.4);}
+
+    /* EDITIONS */
+    #editions{padding:48px 0 36px;border-top:1px solid rgba(255,255,255,0.06);}
+    .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .pack-card{padding:28px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025));border:1px solid rgba(255,255,255,0.09);box-shadow:0 14px 36px rgba(0,0,0,0.22);transition:transform 0.3s ease,border-color 0.3s ease;}
+    .pack-card:hover{transform:translateY(-5px);border-color:rgba(122,0,255,0.45);box-shadow:0 18px 42px rgba(0,0,0,0.35),0 0 24px rgba(122,0,255,0.16);}
+    .pack-badge{width:fit-content;padding:7px 14px;border-radius:999px;font-family:'Syncopate',sans-serif;font-size:0.52rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:rgba(255,255,255,0.06);color:#f8f4ff;margin-bottom:18px;border:1px solid rgba(255,255,255,0.08);}
+    .pack-card.featured{background:radial-gradient(circle at top right,rgba(122,0,255,0.18),transparent 30%),linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));border-color:rgba(255,46,136,0.24);}
+    .pack-card h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;margin-bottom:10px;}
+    .pack-card>p{color:var(--muted);line-height:1.65;margin-bottom:20px;font-size:0.92rem;}
+    .price{display:flex;align-items:baseline;gap:8px;margin:8px 0 18px;}
+    .price strong{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;}
+    .price span{color:var(--muted);font-size:0.88rem;}
+    .features{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;color:#e7dff5;font-size:0.92rem;}
+    .features li{position:relative;padding-left:22px;line-height:1.45;}
+    .features li::before{content:"✦";position:absolute;left:0;color:#c984ff;font-size:0.6rem;top:4px;}
+
+    /* CTA */
+    .cta-strip{padding:12px 0 46px;}
+    .cta-box{position:relative;overflow:hidden;border-radius:28px;padding:44px;background:radial-gradient(circle at top left,rgba(122,0,255,0.22),transparent 28%),radial-gradient(circle at bottom right,rgba(255,46,136,0.13),transparent 24%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+    .cta-box h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,3rem);letter-spacing:-0.02em;margin-bottom:10px;}
+    .cta-box p{color:var(--muted);line-height:1.7;max-width:54ch;font-size:0.95rem;}
+
+    /* TRENDING */
+    #trending{padding:46px 0 54px;border-top:1px solid rgba(255,255,255,0.06);}
+    .trending-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+    .mini-card{overflow:hidden;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition:0.3s ease;cursor:pointer;}
+    .mini-card:hover{transform:translateY(-4px);border-color:rgba(255,46,136,0.3);box-shadow:0 16px 30px rgba(0,0,0,0.3);}
+    .mini-card img{aspect-ratio:4/5;object-fit:cover;}
+    .mini-content{padding:16px;}
+    .mini-content h4{font-family:'Cormorant Garamond',serif;font-size:1.08rem;margin-bottom:7px;}
+    .mini-content p{color:var(--muted);font-size:0.86rem;line-height:1.55;}
+
+    footer{padding:30px 0 42px;color:var(--muted);}
+    .footer-box{padding-top:22px;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:0.86rem;}
+    /* 3D CARD SYSTEM */
+    :root {
+      --hover-easing: cubic-bezier(0.23, 1, 0.32, 1);
+      --return-easing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+     .character-grid, .packs-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      perspective: 2000px;
+    }
+    
+    @media (max-width: 1400px) { .character-grid, .packs-visual-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 900px) { .character-grid, .packs-visual-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .character-grid, .packs-visual-grid { grid-template-columns: 1fr; } }
+
+    .card-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 720 / 1000;
+      cursor: pointer;
+      transition: 0.6s var(--return-easing);
+    }
+
+    .card-wrap:hover .card-3d {
+      transition: 0.6s var(--hover-easing), box-shadow 2s var(--hover-easing);
+      box-shadow: 
+        rgba(255, 255, 255, 0.25) 0 0 50px 5px, 
+        rgba(255, 255, 255, 1) 0 0 0 1px, 
+        rgba(0, 0, 0, 0.8) 0 40px 80px 0, 
+        inset #111 0 0 0 5px, 
+        inset white 0 0 0 6px;
+    }
+
+    .card-3d {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #0c0c0e;
+      overflow: hidden;
+      border-radius: 14px;
+      transform-style: preserve-3d;
+      box-shadow: rgba(0, 0, 0, 0.7) 0 30px 60px 0, inset #0c0c0e 0 0 0 5px, inset rgba(255, 255, 255, 0.15) 0 0 0 6px;
+      transition: 1s var(--return-easing);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .card-bg {
+      opacity: 0.6;
+      position: absolute;
+      top: -15%; left: -15%;
+      width: 130%;
+      height: 130%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transition: 1s var(--return-easing), opacity 5s 1s var(--return-easing);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-wrap:hover .card-bg {
+      opacity: 1;
+      scale: 1.05;
+      transition: 0.6s var(--hover-easing), opacity 5s var(--hover-easing), scale 8s linear;
+    }
+
+    .card-info {
+      padding: 25px;
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      transform: translateY(30%);
+      transition: 0.8s 0.1s var(--hover-easing);
+    }
+    
+    .card-wrap:hover .card-info {
+      transform: translateY(0);
+      transition: 0.7s var(--hover-easing);
+    }
+
+    .card-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-shadow: rgba(0, 0, 0, 0.9) 0 5px 10px;
+      margin: 0;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .card-info p {
+      opacity: 0;
+      font-family: 'Syncopate', sans-serif;
+      font-size: 0.45rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 8px;
+      text-shadow: rgba(0, 0, 0, 1) 0 2px 4px;
+      transition: 0.5s var(--hover-easing);
+      display: block;
+    }
+
+    .card-wrap:hover .card-info p {
+      opacity: 1;
+      transition: 0.6s 0.25s var(--hover-easing);
+    }
+
+    .card-info::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.95) 100%);
+      opacity: 0.6;
+      transform: translateY(100%);
+      transition: 2s var(--return-easing);
+    }
+
+    .card-wrap:hover .card-info::after {
+      opacity: 1;
+      transform: translateY(0);
+      transition: 0.6s var(--hover-easing);
+    }
+
+    /* CHARACTER DETAIL */
+    .char-page{animation:fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    
+    .char-hero{position:relative;width:100%;height:65vh;min-height:400px;max-height:700px;overflow:hidden;}
+    .char-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition: transform 1.2s ease;}
+    .char-hero:hover .char-hero-img { transform: scale(1.05); }
+    .char-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom, transparent 0%, var(--bg) 95%), linear-gradient(to right, var(--bg) 0%, transparent 60%);z-index:1;}
+    .char-hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:44px 52px;}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Syncopate',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:var(--muted);margin-bottom:18px;cursor:pointer;transition:color 0.2s;width:fit-content;border:none;background:none;}
+    .back-btn:hover{color:var(--text);}
+    .char-hero-content h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;letter-spacing:-0.03em;line-height:0.9;margin-bottom:14px;}
+    .char-hero-content h1 em{font-style:italic;background:linear-gradient(135deg,#c984ff,#ff5fa9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .char-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+
+    /* SIN BADGES */
+    .sin-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:999px;font-family:'Syncopate',sans-serif;font-size:0.48rem;letter-spacing:0.1em;font-weight:700;text-transform:uppercase;border:1px solid rgba(255,255,255,0.1);}
+    .sin-1{background:rgba(255,180,80,0.12);color:#ffd080;border-color:rgba(255,180,80,0.22);}
+    .sin-2{background:rgba(255,110,60,0.14);color:#ff9060;border-color:rgba(255,110,60,0.26);}
+    .sin-3{background:rgba(255,50,90,0.14);color:#ff6888;border-color:rgba(255,50,90,0.26);}
+    .sin-4{background:rgba(160,0,255,0.16);color:#c070ff;border-color:rgba(160,0,255,0.3);}
+    .sin-5{background:rgba(255,0,70,0.16);color:#ff3060;border-color:rgba(255,0,70,0.32);}
+
+    /* PACK VISUAL CARDS (image-based) */
+    .char-section{padding:42px 0;}
+    .char-section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;letter-spacing:-0.02em;margin-bottom:26px;}
+    .char-section-title span{font-style:italic;background:linear-gradient(135deg,#c984ff,#ff5fa9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+    .sin-legend{margin-bottom:28px;padding:18px 22px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+    .sin-legend-label{font-family:'Syncopate',sans-serif;font-size:0.5rem;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;}
+    .sin-legend-item{display:flex;align-items:center;gap:5px;font-size:0.84rem;color:var(--muted);}
+
+    .packs-visual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+    .pack-visual{position:relative;overflow:hidden;border-radius:20px;background:var(--card);border:1px solid var(--card-border);aspect-ratio:2/3;transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;box-shadow:0 8px 24px rgba(0,0,0,0.3);cursor:pointer;text-decoration:none;color:var(--text);display:block;}
+    .pack-visual:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,0.5),0 0 26px rgba(122,0,255,0.22);}
+    .pack-visual.lv1:hover{border-color:rgba(255,180,80,0.5);}
+    .pack-visual.lv2:hover{border-color:rgba(255,110,60,0.5);}
+    .pack-visual.lv3:hover{border-color:rgba(255,50,90,0.5);}
+    .pack-visual.lv4:hover{border-color:rgba(160,0,255,0.5);}
+    .pack-visual.lv5:hover{border-color:rgba(255,0,70,0.5);}
+    .pack-visual .image-wrap{position:absolute;inset:0;overflow:hidden;}
+    .pack-visual img{width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease;}
+    .pack-visual:hover img{transform:scale(1.08);}
+    .pack-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.92) 100%);pointer-events:none;}
+    .pack-overlay{position:absolute;inset:auto 0 0 0;z-index:2;padding:18px;display:flex;flex-direction:column;gap:6px;}
+    .pack-overlay h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;}
+    .pack-overlay .pack-meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:0.82rem;}
+    .pack-overlay .pack-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted);}
+    .pack-overlay .pack-price-tag{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-top:2px;}
+    .pack-cta{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Syncopate',sans-serif;font-size:0.48rem;letter-spacing:0.12em;color:#d8aaff;text-transform:uppercase;}
+
+    /* GRAND BUNDLE */
+    .grand-bundle{margin-top:22px;padding:32px;border-radius:24px;background:radial-gradient(circle at top left,rgba(122,0,255,0.2),transparent 32%),radial-gradient(circle at bottom right,rgba(255,46,136,0.14),transparent 32%),linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));border:1px solid rgba(255,46,136,0.22);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+    .grand-bundle h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;margin-bottom:8px;}
+    .grand-bundle p{color:var(--muted);line-height:1.65;font-size:0.92rem;max-width:50ch;}
+    .grand-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.04em;white-space:nowrap;}
+    .grand-price small{font-size:0.95rem;color:var(--muted);font-weight:400;}
+    .pack-detail{display:flex;flex-direction:column;gap:4px;}
+    .pack-detail-label{font-family:'Syncopate',sans-serif;font-size:0.44rem;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;}
+    .pack-detail-value{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:600;}
+
+    /* RESPONSIVE */
+    @media(max-width:1200px){.character-grid{grid-template-columns:repeat(4,1fr);}}
+    @media(max-width:960px){.character-grid{grid-template-columns:repeat(3,1fr);}.packs{grid-template-columns:1fr;}.trending-row{grid-template-columns:repeat(2,1fr);}.packs-visual-grid{grid-template-columns:repeat(2,1fr);}.char-hero-content{padding:28px 22px;}}
+    @media(max-width:600px){.character-grid{grid-template-columns:repeat(2,1fr);}.nav-links{gap:14px;}.video-hero{height:72vh;}.cta-box{padding:26px 20px;}.grand-bundle{flex-direction:column;}.grand-price{font-size:2.2rem;}.packs-visual-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <div class="logo" onclick="showHome()">
+      <span class="logo-top">Exclusive Archive</span>
+      <span class="logo-main">AISIN STUDIO</span>
+    </div>
+    <nav class="nav-links">
+      <a onclick="showHome();setTimeout(()=>scrollTo('characters'),80)">Characters</a>
+      <a onclick="showHome();setTimeout(()=>scrollTo('editions'),80)">Editions</a>
+      <a onclick="showHome();setTimeout(()=>scrollTo('trending'),80)">Trending</a>
+      <a href="#" class="btn btn-primary">Join Patreon</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HOME -->
+<div id="home-page" class="page active">
+  <main>
+    <section class="video-hero">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1600&q=80">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-elegant-woman-in-a-dark-studio-41702-large.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-overlay"></div>
+      <div class="video-hero-content">
+        <div class="eyebrow">Premium Character Collections</div>
+        <h1>A deeper dive into <em>temptation.</em></h1>
+        <p>Curated character drops, premium editions and exclusive themed collections with Aisin Studio's luxury dark aesthetic.</p>
+        <div class="hero-actions">
+          <a href="#characters" class="btn btn-primary">Enter the Vault</a>
+          <a href="#editions" class="btn btn-secondary">View Editions</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="search-section">
+      <div class="container">
+        <div class="search-wrap">
+          <input type="text" id="searchInput" placeholder="Search characters…" autocomplete="off"/>
+          <svg class="search-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <section id="characters">
+      <div class="container">
+        <div class="section-head">
+          <div><h2>Featured Characters</h2></div>
+          <p>Select a character to explore all editions by Sin Level — from 🔥 to 🔥🔥🔥🔥🔥.</p>
+        </div>
+        <!-- Grids populated dynamically by JS -->
+        <div id="grids-container"></div>
+        <div class="pagination-wrap" id="pagination"></div>
+      </div>
+    </section>
+
+    <section id="editions">
+      <div class="container">
+        <div class="section-head"><div><h2>Choose Your Edition</h2></div><p>Unlock individual packs or go premium with the Grand Bundle.</p></div>
+        <div class="packs">
+          <article class="pack-card">
+            <div class="pack-badge">Sin Level 🔥</div>
+            <h3>Tease Edition</h3>
+            <p>The elegant collector entry. Lingerie, soft fantasy, and premium posing.</p>
+            <div class="price"><strong>$8.99</strong><span>single character pack</span></div>
+            <ul class="features"><li>100 high-quality images</li><li>Lingerie &amp; elegant poses</li><li>Single character focus</li><li>SFW-safe thumbnails</li></ul>
+            <a href="#" class="btn btn-secondary">Unlock Pack</a>
+          </article>
+          <article class="pack-card featured">
+            <div class="pack-badge">Best Value ✦</div>
+            <h3>Grand Edition</h3>
+            <p>All sin levels combined into one definitive collector bundle with exclusive HD video drops.</p>
+            <div class="price"><strong>$24.99</strong><span>premium bundle</span></div>
+            <ul class="features"><li>All 4–5 editions combined</li><li>400–500 total images</li><li>4–7 exclusive HD videos</li><li>Priority early access</li></ul>
+            <a href="#" class="btn btn-primary">Get Grand Edition</a>
+          </article>
+          <article class="pack-card">
+            <div class="pack-badge">Vault Access</div>
+            <h3>Patreon Membership</h3>
+            <p>Monthly access to every character, all sin levels, and exclusive vault-only releases.</p>
+            <div class="price"><strong>Join</strong><span>recurring access</span></div>
+            <ul class="features"><li>All characters unlocked</li><li>All sin levels included</li><li>Monthly new drops</li><li>Collector ecosystem access</li></ul>
+            <a href="#" class="btn btn-secondary">Join Patreon</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip" id="join">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Unlock the full Aisin Studio experience</h2>
+            <p>From 🔥 to 🔥🔥🔥🔥🔥 — the complete Sin Level collection awaits inside the vault.</p>
+          </div>
+          <a href="#" class="btn btn-primary">Enter Patreon</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="trending">
+      <div class="container">
+        <div class="section-head"><div><h2>Trending Drops</h2></div><p>Best sellers and new arrivals from this week's releases.</p></div>
+        <div class="trending-row" id="trending-row"></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container footer-box"><div>© 2026 Aisin Studio. All rights reserved.</div><div>Luxury dark collector experience &nbsp;•&nbsp; Premium editions &nbsp;•&nbsp; Exclusive access</div></div></footer>
+</div>
+
+<!-- CHARACTER DETAIL PAGE -->
+<div id="char-page" class="page">
+  <div id="char-content"></div>
+</div>
+
+<!-- DATA -->
+<script>
+let CHARACTERS = [];
+const PACK_TEMPLATES = {
+  4: [ { lv:1, fires:'🔥', cls:'sin-1', lvCls:'lv1' }, { lv:2, fires:'🔥🔥', cls:'sin-2', lvCls:'lv2' }, { lv:3, fires:'🔥🔥🔥', cls:'sin-3', lvCls:'lv3' }, { lv:4, fires:'🔥🔥🔥🔥', cls:'sin-4', lvCls:'lv4' } ],
+  5: [ { lv:1, fires:'🔥', cls:'sin-1', lvCls:'lv1' }, { lv:2, fires:'🔥🔥', cls:'sin-2', lvCls:'lv2' }, { lv:3, fires:'🔥🔥🔥', cls:'sin-3', lvCls:'lv3' }, { lv:4, fires:'🔥🔥🔥🔥', cls:'sin-4', lvCls:'lv4' }, { lv:5, fires:'🔥🔥🔥🔥🔥', cls:'sin-5', lvCls:'lv5' } ]
+};
+
+// ── APP LOGIC ──
+const PER_PAGE = 24;
+let curPage = 1;
+let totalPages = 1;
+
+async function init() {
+  try {
+    const res = await fetch('data/characters.json');
+    CHARACTERS = await res.json();
+    totalPages = Math.max(1, Math.ceil(CHARACTERS.length / PER_PAGE));
+    renderGrids();
+    renderPagination();
+    renderTrending();
+  } catch(e) {
+    console.error("Error cargando personajes:", e);
+    document.getElementById('grids-container').innerHTML = '<p style="text-align:center;padding:40px;color:var(--muted)">Sube tus personajes a la carpeta "assets/characters/" y haz "Actualizar".</p>';
+  }
+}
+
+function renderGrids() {
+  const container = document.getElementById('grids-container');
+  container.innerHTML = '';
+  if (CHARACTERS.length === 0) return;
+
+  for (let p = 0; p < totalPages; p++) {
+    const grid = document.createElement('div');
+    grid.className = 'character-grid';
+    grid.id = 'grid-' + (p + 1);
+    grid.style.display = (p === 0) ? 'grid' : 'none';
+    const start = p * PER_PAGE;
+    const end = Math.min(start + PER_PAGE, CHARACTERS.length);
+    for (let i = start; i < end; i++) {
+        const c = CHARACTERS[i];
+        grid.innerHTML += `
+        <div class="card-wrap" onmousemove="handleCardMove(event, this)" onmouseleave="handleCardLeave(this)" onclick="showChar('${c.id}')">
+          <div class="card-3d">
+            <div class="card-bg" style="background-image: url('${c.cover || ''}')"></div>
+            <div class="card-info">
+              <h3>${c.name}</h3>
+              <p>Editions Available: ${c.packs?.length || 0}</p>
+            </div>
+          </div>
+        </div>`;
+    }
+    container.appendChild(grid);
+  }
+}
+
+function renderPagination() {
+  const wrap = document.getElementById('pagination');
+  if (totalPages <= 1) { wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `<button class="page-btn" onclick="chgPage(-1)">&#8592;</button>`;
+  for (let i = 1; i <= totalPages; i++) wrap.innerHTML += `<button class="page-btn${i===1?' active':''}" id="pb${i}" onclick="goPage(${i})">${i}</button>`;
+  wrap.innerHTML += `<button class="page-btn" onclick="chgPage(1)">&#8594;</button>`;
+}
+
+function goPage(n) {
+  const oldGrid = document.getElementById('grid-'+curPage);
+  if (oldGrid) oldGrid.style.display='none';
+  const oldPage = document.getElementById('pb'+curPage);
+  if (oldPage) oldPage.classList.remove('active');
+  curPage=n;
+  const newGrid = document.getElementById('grid-'+curPage);
+  if (newGrid) newGrid.style.display='grid';
+  const newPage = document.getElementById('pb'+curPage);
+  if (newPage) newPage.classList.add('active');
+  document.getElementById('characters').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function chgPage(d){const n=curPage+d;if(n>=1&&n<=totalPages)goPage(n);}
+
+function renderTrending() {
+  const row = document.getElementById('trending-row');
+  row.innerHTML = '';
+  CHARACTERS.slice(0,4).forEach(c => {
+    row.innerHTML += `
+      <div class="mini-card" onclick="showChar('${c.id}')">
+        <img src="${c.cover}" alt="${c.name}" loading="lazy"/>
+        <div class="mini-content">
+          <h4>${c.name}</h4>
+          <p>${c.subtitle}</p>
+        </div>
+      </div>`;
+  });
+}
+
+function showHome(){
+  document.getElementById('home-page').classList.add('active');
+  document.getElementById('char-page').classList.remove('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showChar(id) {
+  const c = CHARACTERS.find(ch => ch.id === id);
+  if (!c) return;
+  const packs = c.packs || [];
+  const maxFire = packs.length ? '🔥'.repeat(packs.length) : '🔥';
+  
+  const packsHTML = packs.map((p, i) => {
+    const template = (PACK_TEMPLATES[5] || PACK_TEMPLATES[4])[i] || { cls:'sin-1', fires:'🔥', lvCls:'lv1' };
+    return `
+      <div class="card-wrap" onmousemove="handleCardMove(event, this)" onmouseleave="handleCardLeave(this)" onclick="window.open('${p.link}', '_blank')">
+        <div class="card-3d">
+          <div class="card-bg" style="background-image: url('${p.img || c.cover}')"></div>
+          <div class="card-info">
+            <span class="sin-badge ${template.cls}" style="position:static;margin-bottom:10px;">Sin Level ${template.fires}</span>
+            <h3>${p.name}</h3>
+            <p>Unlock Edition ✦ $${p.price}</p>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('char-content').innerHTML = `
+  <div class="char-page">
+    <section class="char-hero">
+      <img class="char-hero-img" src="${c.cover}" alt="${c.name}"/>
+      <div class="char-hero-overlay"></div>
+      <div class="char-hero-content">
+        <button class="back-btn" onclick="showHome()">← Back to Characters</button>
+        <h1>${c.name}</h1>
+        <div class="char-meta">
+          <div class="tag">${packs.length} Sin Editions</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="char-section">
+      <div class="container">
+        <div class="packs-visual-grid">${packsHTML}</div>
+      </div>
+    </section>
+
+    <footer><div class="container footer-box"><div>© 2026 Aisin Studio. All rights reserved.</div></div></footer>
+  </div>`;
+
+  document.getElementById('home-page').classList.remove('active');
+  document.getElementById('char-page').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── 3D HOVER LOGIC (Vanilla JS) ──
+function handleCardMove(e, el) {
+  const card = el.querySelector('.card-3d');
+  const bg = el.querySelector('.card-bg');
+  const rect = el.getBoundingClientRect();
+  const x = e.clientX - rect.left - rect.width/2;
+  const y = e.clientY - rect.top - rect.height/2;
+  
+  const mousePX = x / rect.width;
+  const mousePY = y / rect.height;
+  
+  const rX = mousePX * 30;
+  const rY = mousePY * -30;
+  const tX = mousePX * -40;
+  const tY = mousePY * -40;
+  
+  card.style.transform = `rotateY(${rX}deg) rotateX(${rY}deg)`;
+  bg.style.transform = `translateX(${tX}px) translateY(${tY}px)`;
+}
+
+function handleCardLeave(el) {
+  const card = el.querySelector('.card-3d');
+  const bg = el.querySelector('.card-bg');
+  card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  bg.style.transform = `translateX(0px) translateY(0px)`;
+}
+
+init();
+</script>
+
+
+</body>
+</html>

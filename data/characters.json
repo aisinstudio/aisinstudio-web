@@ -1,0 +1,275 @@
+[
+  {
+    "id": "come-closer",
+    "name": "Come closer",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Come closer/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Come closer/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Come closer/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Come closer/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "inna-hilo",
+    "name": "Inna hilo",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Inna hilo/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Inna hilo/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Inna hilo/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Inna hilo/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "look-nice",
+    "name": "Look nice",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Look nice/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Look nice/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Look nice/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Look nice/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "lora-tau",
+    "name": "Lora tau",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Lora tau/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Lora tau/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Lora tau/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Lora tau/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "more-got",
+    "name": "More got",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/More got/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/More got/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/More got/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/More got/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "nat-yet",
+    "name": "Nat yet",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Nat yet/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Nat yet/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Nat yet/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Nat yet/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
+    "id": "zelda-princcess",
+    "name": "Zelda Princcess",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Zelda Princcess/Foto_Zelda.gif",
+    "packs": [
+      {
+        "lv": 1,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "8.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Zelda Princcess/Pack 1/Zelda_pack1.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Nombre del Pack",
+        "link": "https://patreon.com/tu-link",
+        "price": "6.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Zelda Princcess/Pack 2/Zelda_pack2.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 3,
+        "name": "Pack 3",
+        "link": "#",
+        "price": "16.99",
+        "desc": "Premium collection.",
+        "img": "assets/characters/Zelda Princcess/Pack 3/Zelda_pack3.png",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  }
+]

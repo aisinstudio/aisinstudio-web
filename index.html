@@ -1923,7 +1923,7 @@
         return ['', '', ''];
       }
 
-      function showFor(cardEl) {
+      function showFor(cardEl, immediate = false) {
         if (showTimeoutId) { clearTimeout(showTimeoutId); showTimeoutId = null; showTimeoutCard = null; }
         currentCard = cardEl;
         const rect = cardEl.getBoundingClientRect();
@@ -1936,7 +1936,7 @@
         // make images slightly smaller than card-derived width
         let imgW = Math.round(baseW * 0.9 * 1.10); // 10% larger
         const scaleTarget = 0.825; // final scale (~10% larger than 0.75)
-        // raise previews 10% extra relative to the pack height (previously ~12%)
+        // raise previews relative to the pack height
         const targetY = -Math.round(rect.height * 0.22); // move up ~22% of card height
         const centerY = rect.top + rect.height / 2;
 
@@ -1953,14 +1953,8 @@
         });
 
         // animate all three at the same time: move to spread positions and rise
-        // use a larger timeout so the initial stacked state is visible before transition
-        const extraMiddle = Math.round(rect.height * 0.02); // 5% extra lift for middle preview
-        showTimeoutCard = cardEl;
-        showTimeoutId = setTimeout(() => {
-          // if currentCard changed (user left or another card entered), abort
-          if (currentCard !== cardEl) { showTimeoutId = null; showTimeoutCard = null; return; }
-          // ensure the pointer is still over the card (avoid race conditions)
-          try { if (!cardEl.matches(':hover')) { showTimeoutId = null; showTimeoutCard = null; return; } } catch(e){}
+        const extraMiddle = Math.round(rect.height * 0.05); // 5% extra lift for middle preview
+        const doAnimate = () => {
           imgs.forEach((im, i) => {
             const leftPos = (centerX + (i-1) * spread - imgW / 2);
             im.style.left = leftPos + 'px';
@@ -1969,9 +1963,25 @@
             const tY = (i === 1) ? (targetY - extraMiddle) : targetY;
             im.style.transform = 'translateY(' + tY + 'px) scale(' + scaleTarget + ') rotate(' + ((i-1) * 4) + 'deg)';
           });
-          showTimeoutId = null;
+        };
+
+        if (immediate) {
+          // clear any pending scheduled shows
           showTimeoutCard = null;
-        }, 40);
+          showTimeoutId = null;
+          requestAnimationFrame(doAnimate);
+        } else {
+          showTimeoutCard = cardEl;
+          showTimeoutId = setTimeout(() => {
+            // if currentCard changed (user left or another card entered), abort
+            if (currentCard !== cardEl) { showTimeoutId = null; showTimeoutCard = null; return; }
+            // ensure the pointer is still over the card (avoid race conditions)
+            try { if (!cardEl.matches(':hover')) { showTimeoutId = null; showTimeoutCard = null; return; } } catch(e){}
+            doAnimate();
+            showTimeoutId = null;
+            showTimeoutCard = null;
+          }, 40);
+        }
       }
 
       function hideAll() {
@@ -2035,11 +2045,14 @@
           // avoid double-binding
           if (card.__previewBound) return;
           card.__previewBound = true;
-          card.addEventListener('pointerenter', () => {
+          card.addEventListener('pointerenter', (ev) => {
             if (card !== currentCard && card.querySelector('.pack-preview')) {
               // debug: ensure showFor is triggered
               try { console.debug('preview: pointerenter', card); } catch(e){}
-              showFor(card);
+              // if entering from another card, show immediately
+              let fromCard = null;
+              try { fromCard = ev.relatedTarget && ev.relatedTarget.closest && ev.relatedTarget.closest('.card-wrap'); } catch(e){}
+              showFor(card, !!fromCard);
             }
           });
           card.addEventListener('pointerleave', (ev) => {

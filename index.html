@@ -47,19 +47,19 @@
     .page.active{display:block;}
 
     /* VIDEO HERO */
-    .video-hero{position:relative;width:100%;height:35vh;min-height:220px;max-height:400px;overflow:hidden;background:var(--bg);}
+    .video-hero{position:relative;width:100%;height:28vh;min-height:180px;max-height:320px;overflow:hidden;background:var(--bg);}
     .video-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-    .video-overlay{position:absolute;inset:0;background:linear-gradient(0deg,#07070b 0%,rgba(7,7,11,0.45) 38%,rgba(7,7,11,0.18) 65%,rgba(7,7,11,0.72) 100%),radial-gradient(ellipse at 28% 50%,rgba(122,0,255,0.22),transparent 50%),radial-gradient(ellipse at 75% 30%,rgba(255,46,136,0.14),transparent 40%);z-index:1;}
-    .video-hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:14px;}
-    .eyebrow{padding:7px 18px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e5d4ff;font-family:'Syncopate',sans-serif;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;}
-    .video-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:700;letter-spacing:-0.02em;line-height:0.92;max-width:14ch;}
+    .video-overlay{position:absolute;inset:0;background:linear-gradient(0deg,#07070b 0%,rgba(7,7,11,0.45) 38%,rgba(7,7,11,0.18) 65%,rgba(7,7,11,0.72) 100%);z-index:1;}
+    .video-hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;gap:8px;}
+    .eyebrow{padding:5px 14px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e5d4ff;font-family:'Syncopate',sans-serif;font-size:0.45rem;letter-spacing:0.2em;text-transform:uppercase;}
+    .video-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:700;letter-spacing:-0.02em;line-height:0.95;max-width:16ch;margin:0;}
     .video-hero h1 em{font-style:italic;background:linear-gradient(135deg,#c984ff,#ff5fa9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .video-hero p{color:var(--muted);font-size:1.1rem;max-width:50ch;line-height:1.6;}
-    .hero-actions{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;justify-content:center;}
+    .video-hero p{color:var(--muted);font-size:0.9rem;max-width:50ch;line-height:1.4;margin:0;}
+    .hero-actions{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;justify-content:center;}
 
     /* SEARCH */
-    .search-section{padding:30px 0 0;position:relative;z-index:10;}
-    .search-wrap{position:relative;max-width:760px;margin:0 auto;}
+    .search-section{padding:26px 0 0;position:relative;z-index:10;}
+    .search-wrap{position:relative;max-width:530px;margin:0 auto;}
     .search-wrap input{width:100%;height:56px;padding:0 58px 0 26px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:var(--text);font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:0.03em;outline:none;transition:0.25s;backdrop-filter:blur(12px);}
     .search-wrap input::placeholder{color:rgba(185,177,201,0.5);}
     .search-wrap input:focus{border-color:rgba(122,0,255,0.5);background:rgba(255,255,255,0.08);box-shadow:0 0 26px rgba(122,0,255,0.18);}
@@ -458,6 +458,29 @@ async function init() {
     renderGrids();
     renderPagination();
     renderTrending();
+
+    // ── SEARCH LOGIC ──
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      const allCards = document.querySelectorAll('.card-wrap');
+      if (!q) {
+        for (let p=1; p<=totalPages; p++) {
+          const g = document.getElementById('grid-'+p);
+          if (g) g.style.display = (p===curPage) ? 'grid' : 'none';
+        }
+        allCards.forEach(c => c.style.display = '');
+        return;
+      }
+      for (let p=1; p<=totalPages; p++) {
+        const g = document.getElementById('grid-'+p);
+        if (g) g.style.display = 'grid';
+      }
+      allCards.forEach(c => {
+        const name = c.querySelector('h3')?.textContent.toLowerCase() || '';
+        c.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+
   } catch(e) {
     console.error("Error cargando personajes:", e);
     document.getElementById('grids-container').innerHTML = '<p style="text-align:center;padding:40px;color:var(--muted)">Sube tus personajes a la carpeta "assets/characters/" y haz "Actualizar".</p>';

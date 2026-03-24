@@ -89,15 +89,31 @@
     .page-btn.active{background:linear-gradient(135deg,var(--purple),var(--pink));border-color:transparent;color:white;box-shadow:0 0 22px rgba(122,0,255,0.4);}
 
     /* SIN GUIDE */
-    #editions{padding:48px 0 36px;border-top:1px solid rgba(255,255,255,0.06);}
-    .sin-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-    .sin-guide-card{padding:26px;border-radius:24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:0.3s ease;}
-    .sin-guide-card:hover{border-color:rgba(122,0,255,0.3);transform:translateY(-4px);background:rgba(255,255,255,0.05);}
-    .sin-guide-card h3{font-family:'Syncopate',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-    .sin-guide-card .tier-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;display:block;color:#fff;}
-    .sin-guide-info{display:flex;flex-direction:column;gap:8px;font-size:0.9rem;color:var(--muted);line-height:1.5;}
-    .sin-guide-info strong{color:#fff;font-weight:600;}
-    .sin-guide-info div{padding-left:14px;border-left:1px solid rgba(122,0,255,0.25);}
+    #editions{padding:48px 0 36px;border-top:1px solid rgba(255,255,255,0.06);background:radial-gradient(ellipse at bottom left,rgba(122,0,255,0.04) 0%,transparent 45%);}
+    .sin-guide-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;align-items:stretch;}
+    .sin-guide-card{padding:14px 20px;border-radius:24px;background:rgba(255,255,255,0.01);border:2px solid rgba(255,255,255,0.08);transition:0.35s ease-out;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;aspect-ratio:3/2;gap:6px;backdrop-filter:blur(12px);position:relative;}
+    .sin-guide-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.03);box-shadow:0 20px 40px rgba(0,0,0,0.4);}
+    
+    .sin-guide-card.level-1{border-color:rgba(122,0,255,0.4);}
+    .sin-guide-card.level-1:hover{border-color:rgba(122,0,255,0.6);box-shadow:0 0 40px rgba(122,0,255,0.3);}
+    
+    .sin-guide-card.level-2{border-color:rgba(200,50,150,0.4);}
+    .sin-guide-card.level-2:hover{border-color:rgba(200,50,150,0.6);box-shadow:0 0 40px rgba(200,50,150,0.3);}
+    
+    .sin-guide-card.level-3{border-color:rgba(255,100,100,0.4);}
+    .sin-guide-card.level-3:hover{border-color:rgba(255,100,100,0.6);box-shadow:0 0 40px rgba(255,100,100,0.3);}
+    
+    .sin-guide-card.level-4{border-color:rgba(255,60,30,0.5);}
+    .sin-guide-card.level-4:hover{border-color:rgba(255,60,30,0.7);box-shadow:0 0 40px rgba(255,60,30,0.35);}
+    
+    .sin-guide-card.level-5{border-color:rgba(255,100,0,0.6);}
+    .sin-guide-card.level-5:hover{border-color:rgba(255,100,0,0.8);box-shadow:0 0 40px rgba(255,100,0,0.4);}
+    
+    .sin-level-badge{font-family:'Syncopate',sans-serif;font-size:0.51rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.7);padding:4px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;height:26px;}
+    .sin-guide-card .tier-title{font-family:'Cormorant Garamond',serif;font-size:1.495rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-0.01em;margin:0;height:32px;display:flex;align-items:center;justify-content:center;white-space:nowrap;}
+    .sin-description{font-family:'Cormorant Garamond',serif;font-size:0.92rem;color:rgba(255,255,255,0.75);line-height:1.25;margin:0;height:40px;display:flex;align-items:center;justify-content:center;width:100%;text-align:center;max-width:65%;margin-left:auto;margin-right:auto;word-break:break-word;}
+    .sin-guide-card .intensity-row{display:flex;justify-content:center;align-items:center;border-top:1px dashed rgba(255,255,255,0.15);padding-top:6px;gap:8px;width:100%;height:26px;}
+    .intensity-row span.label{font-family:'Syncopate',sans-serif;font-size:0.44rem;letter-spacing:0.08em;opacity:0.6;text-transform:uppercase;display:block;white-space:nowrap;}
 
     /* CTA */
     .cta-strip{padding:12px 0 46px;}
@@ -365,84 +381,76 @@
       <div class="container">
         <div class="section-head">
           <div><h2>Featured Characters</h2></div>
-          <p>Select a character to explore all editions by Sin Level — from 🔥 to 🔥🔥🔥🔥🔥.</p>
         </div>
         <!-- Grids populated dynamically by JS -->
         <div id="grids-container"></div>
         <div class="pagination-wrap" id="pagination"></div>
-      </div>
-    </section>
-
-    <section id="editions">
+      </    <section id="editions">
       <div class="container">
         <div class="section-head">
           <div><h2>Sin Level Guide</h2></div>
-          <p>Explore our tiered collection levels designed to match every preference.</p>
         </div>
         
         <div class="sin-guide-grid">
           <!-- LEVEL 1 -->
-          <div class="sin-guide-card">
-            <h3>Sin Level 1</h3>
-            <span class="tier-title">Lingerie Veil</span>
-            <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Lingerie Veil – Tease</p>
-              <p><strong>Collection:</strong> Soft Tease Collection</p>
-              <p><strong>Theme:</strong> Soft tease / lingerie</p>
-              <p><strong>Focus:</strong> Gentle seduction</p>
-              <p><strong>Intensity:</strong> 🔥<span style="opacity:0.08; filter:grayscale(1) brightness(0);">🔥🔥🔥🔥</span></p>
+          <div class="sin-guide-card level-1">
+            <div class="sin-level-badge">SIN LEVEL 1 🔥</div>
+            <div class="tier-title">Lingerie Veil</div>
+            <div class="sin-description">Soft tease & lingerie seduction</div>
+            <div class="intensity-row">
+              <span class="label">INTENSITY</span>
+              <span>🔥<span style="opacity:0.2;">🔥🔥🔥🔥</span></span>
             </div>
           </div>
 
           <!-- LEVEL 2 -->
-          <div class="sin-guide-card">
-            <h3>Sin Level 2</h3>
-            <span class="tier-title">Whispered Desires</span>
-            <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Whispered Desires – Solo Edition</p>
-              <p><strong>Collection:</strong> Whispered Desires Collection</p>
-              <p><strong>Theme:</strong> Nude soft / erotic poses</p>
-              <p><strong>Focus:</strong> Intimate whispers</p>
-              <p><strong>Intensity:</strong> 🔥🔥<span style="opacity:0.08; filter:grayscale(1) brightness(0);">🔥🔥🔥</span></p>
+          <div class="sin-guide-card level-2">
+            <div class="sin-level-badge">SIN LEVEL 2 🔥</div>
+            <div class="tier-title">Whispered Desires</div>
+            <div class="sin-description">Artistic nude & intimate tension</div>
+            <div class="intensity-row">
+              <span class="label">INTENSITY</span>
+              <span>🔥🔥<span style="opacity:0.2;">🔥🔥🔥</span></span>
             </div>
           </div>
 
           <!-- LEVEL 3 -->
-          <div class="sin-guide-card">
-            <h3>Sin Level 3</h3>
-            <span class="tier-title">Carnal Series</span>
-            <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Carnal Embrace Edition</p>
-              <p><strong>Collection:</strong> Carnal Embrace</p>
-              <p><strong>Theme:</strong> Devoted Worship</p>
-              <p><strong>Focus:</strong> Passionate oral temptation</p>
-              <p><strong>Intensity:</strong> 🔥🔥🔥<span style="opacity:0.08; filter:grayscale(1) brightness(0);">🔥🔥</span></p>
+          <div class="sin-guide-card level-3">
+            <div class="sin-level-badge">SIN LEVEL 3 🔥</div>
+            <div class="tier-title">Carnal Series</div>
+            <div class="sin-description">Passionate connection & deep desire</div>
+            <div class="intensity-row">
+              <span class="label">INTENSITY</span>
+              <span>🔥🔥🔥<span style="opacity:0.2;">🔥🔥</span></span>
             </div>
           </div>
 
           <!-- LEVEL 4 -->
-          <div class="sin-guide-card">
-            <h3>Sin Level 4</h3>
-            <span class="tier-title">Forbidden Series</span>
-            <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Forbidden Depths Edition</p>
-              <p><strong>Collection:</strong> Forbidden Depths</p>
-              <p><strong>Theme:</strong> Dark indulgence</p>
-              <p><strong>Focus:</strong> Explosive surrender & climax</p>
-              <p><strong>Intensity:</strong> 🔥🔥🔥🔥<span style="opacity:0.08; filter:grayscale(1) brightness(0);">🔥</span></p>
+          <div class="sin-guide-card level-4">
+            <div class="sin-level-badge">SIN LEVEL 4 🔥</div>
+            <div class="tier-title">Forbidden Series</div>
+            <div class="sin-description">Dark indulgence & explosive climax</div>
+            <div class="intensity-row">
+              <span class="label">INTENSITY</span>
+              <span>🔥🔥🔥🔥<span style="opacity:0.2;">🔥</span></span>
             </div>
           </div>
 
           <!-- LEVEL 5 -->
-          <div class="sin-guide-card">
-            <h3>Sin Level 5</h3>
-            <span class="tier-title">Ultimate Sin</span>
-            <div class="sin-guide-info">
-              <p><strong>Edition:</strong> Abyss of Sin Edition</p>
-              <p><strong>Collection:</strong> Abyss of Sin</p>
-              <p><strong>Theme:</strong> Twisted fantasies</p>
-              <p><strong>Focus:</strong> Fetish vault & ultimate indulgence</p>
-              <p><strong>Intensity:</strong> 🔥🔥🔥🔥🔥</p>
+          <div class="sin-guide-card level-5">
+            <div class="sin-level-badge">SIN LEVEL 5 🔥</div>
+            <div class="tier-title">Ultimate Sin</div>
+            <div class="sin-description">Pure Desire & extreme pleasure</div>
+            <div class="intensity-row">
+              <span class="label">INTENSITY</span>
+              <span>🔥🔥🔥🔥🔥</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+���🔥🔥</p>
             </div>
           </div>
 
@@ -455,7 +463,6 @@
         <div class="cta-box">
           <div>
             <h2>Unlock the full Aisin Studio experience</h2>
-            <p>From 🔥 to 🔥🔥🔥🔥🔥 — the complete Sin Level collection awaits inside the vault.</p>
           </div>
           <a href="#" class="btn btn-primary">Enter Patreon</a>
         </div>

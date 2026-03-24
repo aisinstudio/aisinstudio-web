@@ -1,5 +1,44 @@
 [
   {
+    "id": "hinata",
+    "name": "Hinata",
+    "subtitle": "Premium Collection",
+    "levels": 3,
+    "cover": "assets/characters/Hinata/Hinata_0 (2).jpg",
+    "packs": [
+      {
+        "lv": 3,
+        "name": "Hinata Naruto",
+        "link": "https://patreon.com/tu-link",
+        "price": "$6.99",
+        "desc": "Forbidden Series",
+        "img": "assets/characters/Hinata/Pack 1/Hinata_0 (3).jpg",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 1,
+        "name": "Hinata Narutos",
+        "link": "https://patreon.com/tu-link",
+        "price": "$6.99",
+        "desc": "Lingerie Veil",
+        "img": "assets/characters/Hinata/Pack 2/Hinata_0 (8).jpg",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      },
+      {
+        "lv": 2,
+        "name": "Hinata Naruto",
+        "link": "https://patreon.com/tu-link",
+        "price": "$6.99",
+        "desc": "Whispered Desires",
+        "img": "assets/characters/Hinata/Pack 3/Hinata_0 (10).jpg",
+        "imgs": "100+ images",
+        "vids": "HD Video Clips"
+      }
+    ]
+  },
+  {
     "id": "inno-yamada",
     "name": "Inno Yamada",
     "subtitle": "Premium Collection",

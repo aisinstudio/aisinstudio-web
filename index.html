@@ -578,10 +578,14 @@ function showChar(id) {
       <div class="card-wrap" onmousemove="handleCardMove(event, this)" onmouseleave="handleCardLeave(this)" onclick="window.open('${p.link}', '_blank')">
         <div class="card-3d">
           <div class="card-bg" style="background-image: url('${p.img || c.cover}')"></div>
+          
+          <div style="position:absolute; bottom:15px; right:20px; font-size:0.7rem; z-index:10; pointer-events:none; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+            ${firesHTML}
+          </div>
+
           <div class="card-info">
-            <span class="sin-badge ${template.cls}" style="position:static;margin-bottom:10px;">Sin Level ${firesHTML}</span>
             <h3>${p.name}</h3>
-            <div style="font-family:'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 8px;">${p.desc}</div>
+            <div style="font-family:'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(255,255,255,0.7); font-style: italic; margin-top:2px; margin-bottom: 12px;">${p.desc}</div>
             <p>Unlock Edition ✦ $${p.price}</p>
           </div>
         </div>

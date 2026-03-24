@@ -566,15 +566,22 @@ function showChar(id) {
   const packs = c.packs || [];
   const maxFire = packs.length ? '🔥'.repeat(packs.length) : '🔥';
   
-  const packsHTML = packs.map((p, i) => {
-    const template = (PACK_TEMPLATES[5] || PACK_TEMPLATES[4])[i] || { cls:'sin-1', fires:'🔥', lvCls:'lv1' };
+  const packsHTML = packs.map((p) => {
+    let firesHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= p.lv) firesHTML += '🔥';
+        else firesHTML += '<span style="opacity: 0.3; filter: grayscale(1);">🔥</span>';
+    }
+    const template = (PACK_TEMPLATES[5] || PACK_TEMPLATES[4])[p.lv - 1] || { cls: 'sin-1' };
+    
     return `
       <div class="card-wrap" onmousemove="handleCardMove(event, this)" onmouseleave="handleCardLeave(this)" onclick="window.open('${p.link}', '_blank')">
         <div class="card-3d">
           <div class="card-bg" style="background-image: url('${p.img || c.cover}')"></div>
           <div class="card-info">
-            <span class="sin-badge ${template.cls}" style="position:static;margin-bottom:10px;">Sin Level ${template.fires}</span>
+            <span class="sin-badge ${template.cls}" style="position:static;margin-bottom:10px;">Sin Level ${firesHTML}</span>
             <h3>${p.name}</h3>
+            <div style="font-family:'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 8px;">${p.desc}</div>
             <p>Unlock Edition ✦ $${p.price}</p>
           </div>
         </div>

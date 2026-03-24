@@ -15,6 +15,7 @@ function scanPacks(charPath, charId) {
         const packPath = path.join(charPath, folder);
         const files = fs.readdirSync(packPath);
         
+        let lv = index + 1;
         let name = folder;
         let link = '#';
         let price = (index === 0) ? '8.99' : (index === 1) ? '12.99' : (index === 2) ? '16.99' : '22.99';
@@ -27,12 +28,18 @@ function scanPacks(charPath, charId) {
             if (content.startsWith('http')) {
                 link = content;
             } else {
-                // Si tiene el formato NAME: LINK: etc.
                 const lines = content.split('\n');
                 lines.forEach(l => {
-                    if (l.startsWith('NAME:')) name = l.replace('NAME:', '').trim();
-                    if (l.startsWith('LINK:')) link = l.replace('LINK:', '').trim();
-                    if (l.startsWith('PRICE:')) price = l.replace('PRICE:', '').trim();
+                    const line = l.trim();
+                    if (line.startsWith('NAME:')) name = line.replace('NAME:', '').trim();
+                    if (line.startsWith('LINK:')) link = line.replace('LINK:', '').trim();
+                    if (line.startsWith('PRICE:')) price = line.replace('PRICE:', '').trim();
+                    if (line.startsWith('PACK Description:')) desc = line.replace('PACK Description:', '').trim();
+                    if (line.startsWith('DESC:')) desc = line.replace('DESC:', '').trim();
+                    if (line.includes('SINLEVEL:')) {
+                        const match = line.match(/\((\d+)\)/);
+                        if (match) lv = parseInt(match[1]);
+                    }
                 });
             }
         }
@@ -42,7 +49,7 @@ function scanPacks(charPath, charId) {
         const imgPath = img ? `assets/characters/${charId}/${folder}/${img}` : '';
 
         return {
-            lv: index + 1,
+            lv,
             name,
             link,
             price,
